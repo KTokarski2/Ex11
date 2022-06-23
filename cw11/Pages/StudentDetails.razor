@@ -1,0 +1,43 @@
+﻿@page "/students/{ID:int}" 
+@inject IStudentService StudentService
+
+
+
+<h3>StudentDetails</h3>
+<input value="@ID" disabled />
+<input value="@student.Avatar" disabled />
+<img src="@student.Avatar" />
+<br /><input value="@student.FirstName" disabled/><br />
+<br /><input value="@student.LastName" disabled /><br/>
+<br /><input value="@student.BirthDate" disabled /><br />
+<br /><input value="@student.Studies" disabled /><br />
+
+
+
+
+@code {
+    [Parameter]
+    public int ID { get; set; }
+
+    Student student;
+
+    protected override void OnInitialized()
+    {
+        student = StudentService.GetStudent(ID);
+    }
+
+    [Parameter]
+    public string FirstName { get; set; }
+
+    [Parameter]
+    public string LastName { get; set; }
+
+    [Parameter]
+    public DateTime BirthDate { get; set; }
+
+    [Parameter]
+    public string Studies { get; set; }
+
+    [Parameter]
+    public string Avatar { get; set; }
+}
